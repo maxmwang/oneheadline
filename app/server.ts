@@ -19,20 +19,17 @@ const server = http.createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
 
 io.on('connection', async (socket) => {
-  console.log('user connected');
   // fetch message from db
   const initMessage = await getMessage();
 
   socket.emit('message', initMessage);
 
   socket.on('new', async (newMessage: string) => {
-    console.log('user sent new message');
     const updatedMessage = await updateMessage(newMessage);
     io.sockets.emit('message', updatedMessage);
   });
 
   socket.on('stream', async () => {
-    console.log('user requested stream');
     const message = await getMessage();
     socket.emit('message', message);
   });
