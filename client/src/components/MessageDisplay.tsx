@@ -1,25 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Socket } from 'socket.io-client';
 import {
   Box,
   Stack,
   Heading,
 } from '@chakra-ui/react';
 
-import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { streamMessageThunk } from '../features/messageSlice';
 import DateComponent from './DateComponent';
 import ChangesComponent from './ChangesComponent';
+import IMessage from '../api/message';
 
-function MessageDisplay() {
-  const dispatch = useAppDispatch();
-
-  const {
-    message, updatedAt, createdAt, changes,
-  } = useAppSelector((state) => state.messageData);
+function MessageDisplay({ socket }: { socket: Socket }) {
+  const [{
+    message, createdAt, updatedAt, changes,
+  }, setMessageData] = useState<IMessage>({
+    message: '',
+    createdAt: '',
+    updatedAt: '',
+    changes: 0,
+  });
 
   useEffect(() => {
-    // dispatch(getMessageThunk());
-    dispatch(streamMessageThunk());
+    socket.on('message', (data: IMessage) => {
+      setMessageData(data);
+    });
   }, []);
 
   return (

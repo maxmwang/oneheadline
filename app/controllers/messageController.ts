@@ -1,10 +1,6 @@
-import { Request, Response } from 'express';
-import Message from '../models/messageModel';
+import Message, { IMessage } from '../models/messageModel';
 
-// @desc Get message
-// @route GET /api/message
-// @sends {object} message
-export async function getMessage(req: Request, res: Response): Promise<Response> {
+export async function getMessage(): Promise<IMessage> {
   const message = await Message.findOne({});
 
   // for intiial creation of message
@@ -12,31 +8,21 @@ export async function getMessage(req: Request, res: Response): Promise<Response>
   if (!message) {
     const initialMessage = Message.create({ message: 'Initial Message.' });
 
-    return res.status(200).json(initialMessage);
+    return initialMessage;
   }
 
-  return res.status(200).json(message);
+  return message;
 }
 
-type UpdateRequest = Request & {
-  body: {
-    message: string;
-  }
-};
-// @desc Update message
-// @route PUT /api/message
-// @params {string} req.body.message - required
-// @sends {object} new message
-export async function updateMessage(req: UpdateRequest, res: Response): Promise<Response> {
-  const { message } = req.body;
-  const newMessage = await Message.findOneAndUpdate(
+export async function updateMessage(newMessage: string): Promise<IMessage | null> {
+  const message = await Message.findOneAndUpdate(
     {},
     {
-      message,
+      message: newMessage,
       $inc: { changes: 1 },
     },
     { new: true },
   );
 
-  return res.status(200).json(newMessage);
+  return message;
 }

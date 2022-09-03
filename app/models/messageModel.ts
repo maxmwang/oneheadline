@@ -1,13 +1,13 @@
 import mongoose, { Schema } from 'mongoose';
 
-interface Message {
+export interface IMessage {
   message: string;
   createdAt: Date;
   updatedAt: Date;
   changes: number;
 }
 
-const messageSchema = new Schema<Message>({
+const messageSchema = new Schema<IMessage>({
   message: {
     type: String,
     trim: true,

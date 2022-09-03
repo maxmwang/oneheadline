@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
+import { Socket } from 'socket.io-client';
 import { Input, Button } from '@chakra-ui/react';
 
-import { useAppDispatch } from '../app/hooks';
-import { getMessageThunk, updateMessageThunk } from '../features/messageSlice';
-
-function MessageInput() {
-  const dispatch = useAppDispatch();
-
+function MessageInput({ socket }: { socket: Socket }) {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSubmit = () => {
-    dispatch(updateMessageThunk(inputMessage));
+    socket.emit('new', inputMessage);
+    setInputMessage('');
   };
-  // refresh for testing purposes only?
-  // how to implement auto refresh?
   const handleRefresh = () => {
-    dispatch(getMessageThunk());
+    socket.emit('stream');
   };
 
   return (

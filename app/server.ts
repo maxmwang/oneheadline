@@ -1,23 +1,41 @@
 import express from 'express';
 import 'express-async-errors';
+import http from 'http';
+import { Server } from 'socket.io';
 import * as dotenv from 'dotenv';
 
 import connectDB from './config/db';
-import messageRouter from './routes/messageRoute';
-import streamRouter from './routes/streamRoute';
+import { ClientToServerEvents, ServerToClientEvents } from './config/socketTypes';
+import { getMessage, updateMessage } from './controllers/messageController';
 
 dotenv.config();
 
+const PORT = Number(process.env.PORT) || 5000;
+
 connectDB();
 
-const port = Number(process.env.PORT) || 5000;
-
 const app = express();
+const server = http.createServer(app);
+const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+io.on('connection', async (socket) => {
+  console.log('user connected');
+  // fetch message from db
+  const initMessage = await getMessage();
 
-app.use('/api/message', messageRouter);
-app.use('/api/stream', streamRouter);
+  socket.emit('message', initMessage);
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+  socket.on('new', async (newMessage: string) => {
+    console.log('user sent new message');
+    const updatedMessage = await updateMessage(newMessage);
+    io.sockets.emit('message', updatedMessage);
+  });
+
+  socket.on('stream', async () => {
+    console.log('user requested stream');
+    const message = await getMessage();
+    socket.emit('message', message);
+  });
+});
+
+server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
