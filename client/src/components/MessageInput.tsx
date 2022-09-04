@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Socket } from 'socket.io-client';
 import { Input, Button } from '@chakra-ui/react';
 
-function MessageInput({ socket, className }: { socket: Socket, className?: string }) {
+interface MessageInputProps {
+  emitNew: (inputMessage: string) => void;
+  className?: string;
+}
+
+function MessageInput({ emitNew, className }: MessageInputProps) {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSubmit = () => {
-    socket.emit('new', inputMessage);
+    emitNew(inputMessage);
     setInputMessage('');
-  };
-  const handleRefresh = () => {
-    socket.emit('stream');
   };
 
   return (
@@ -22,9 +23,6 @@ function MessageInput({ socket, className }: { socket: Socket, className?: strin
       />
       <Button onClick={handleSubmit} colorScheme="blue">
         Submit
-      </Button>
-      <Button onClick={handleRefresh}>
-        Refresh
       </Button>
     </section>
   );
