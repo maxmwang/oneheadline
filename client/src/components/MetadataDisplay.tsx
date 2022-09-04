@@ -2,6 +2,11 @@ import React from 'react';
 
 import { Text, HStack } from '@chakra-ui/react';
 
+const DateTimeOptions: Intl.DateTimeFormatOptions = {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+};
+
 type MetadataDisplayProps = {
   createdAt: string;
   updatedAt: string;
@@ -18,18 +23,24 @@ function MetadataDisplay({
   return (
     <section className={className}>
       <HStack spacing="24px">
-        <Text as="sub">created: </Text>
-        <Text>
-          {`${createdDateObj.toLocaleDateString()} ${createdDateObj.toLocaleTimeString()}`}
-        </Text>
-        <Text as="sub">updated: </Text>
-        <Text>
-          {`${updatedDateObj.toLocaleDateString()} ${updatedDateObj.toLocaleTimeString()}`}
-        </Text>
-        <Text as="sub">taps: </Text>
-        <Text>
-          {taps}
-        </Text>
+        <div>
+          <Text as="sub">created:</Text>
+          <Text>
+            {`${createdDateObj.toLocaleString('en-US', DateTimeOptions)}`}
+          </Text>
+        </div>
+        <div>
+          <Text as="sub">updated: </Text>
+          <Text>
+            {`${updatedDateObj.toLocaleString('en-US', DateTimeOptions)}`}
+          </Text>
+        </div>
+        <div>
+          <Text as="sub">taps: </Text>
+          <Text>
+            {taps}
+          </Text>
+        </div>
       </HStack>
     </section>
   );
