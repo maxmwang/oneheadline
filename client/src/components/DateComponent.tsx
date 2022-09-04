@@ -7,7 +7,7 @@ type DateComponentProps = {
 
 function DateComponent({ dateAsString, dateType }: DateComponentProps) {
   const dateObj = new Date(dateAsString);
-  const label = dateType === 'createdAt' ? 'Created At: ' : 'Last Updated At: ';
+  const label = dateType === 'createdAt' ? 'created: ' : 'updated: ';
 
   return (
     <section>
