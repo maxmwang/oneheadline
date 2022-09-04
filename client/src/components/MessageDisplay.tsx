@@ -10,7 +10,7 @@ import DateComponent from './DateComponent';
 import TapsComponent from './TapsComponent';
 import IMessage from '../api/message';
 
-function MessageDisplay({ socket }: { socket: Socket }) {
+function MessageDisplay({ socket, className }: { socket: Socket, className?: string }) {
   const [{
     message, createdAt, updatedAt, taps,
   }, setMessageData] = useState<IMessage>({
@@ -27,9 +27,9 @@ function MessageDisplay({ socket }: { socket: Socket }) {
   }, []);
 
   return (
-    <section>
+    <section className={className}>
       <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" alignItems="center">
-        <Heading alignItems="center">
+        <Heading alignItems="center" className={`${className}-text`}>
           {message}
         </Heading>
       </Box>
@@ -42,5 +42,9 @@ function MessageDisplay({ socket }: { socket: Socket }) {
     </section>
   );
 }
+
+MessageDisplay.defaultProps = {
+  className: '',
+};
 
 export default MessageDisplay;

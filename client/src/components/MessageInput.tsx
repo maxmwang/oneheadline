@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { Input, Button } from '@chakra-ui/react';
 
-function MessageInput({ socket }: { socket: Socket }) {
+function MessageInput({ socket, className }: { socket: Socket, className?: string }) {
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSubmit = () => {
@@ -14,7 +14,7 @@ function MessageInput({ socket }: { socket: Socket }) {
   };
 
   return (
-    <section>
+    <section className={className}>
       <Input
         placeholder="New Message"
         value={inputMessage}
@@ -29,5 +29,9 @@ function MessageInput({ socket }: { socket: Socket }) {
     </section>
   );
 }
+
+MessageInput.defaultProps = {
+  className: '',
+};
 
 export default MessageInput;

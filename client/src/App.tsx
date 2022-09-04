@@ -9,8 +9,8 @@ const socket = io();
 function App() {
   return (
     <section>
-      <MessageDisplay socket={socket} />
-      <MessageInput socket={socket} />
+      <MessageDisplay socket={socket} className="display" />
+      <MessageInput socket={socket} className="input" />
     </section>
   );
 }
