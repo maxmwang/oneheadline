@@ -10,21 +10,21 @@ import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 const HEADLINE_LENGTH_LIMIT = 64;
 
-interface MessageInputProps {
-  emitNew: (inputMessage: string) => void;
+interface HeadlineInputProps {
+  emitNew: (inputHeadline: string) => void;
   className?: string;
 }
 
-function MessageInput({ emitNew, className }: MessageInputProps) {
-  const [inputMessage, setInputMessage] = useState('');
+function HeadlineInput({ emitNew, className }: HeadlineInputProps) {
+  const [inputHeadline, setInputHeadline] = useState('');
 
   const toast = useToast();
   const TOAST_ERROR_ID = 'error-toast';
 
   const handleSubmit = () => {
-    if (inputMessage) {
-      emitNew(inputMessage);
-      setInputMessage('');
+    if (inputHeadline) {
+      emitNew(inputHeadline);
+      setInputHeadline('');
       toast.close(TOAST_ERROR_ID);
     } else if (!toast.isActive(TOAST_ERROR_ID)) {
       toast({
@@ -40,17 +40,17 @@ function MessageInput({ emitNew, className }: MessageInputProps) {
     <section className={className}>
       <HStack>
         <Input
-          placeholder="Share a message."
+          placeholder="Share a headline."
           variant="flushed"
           colorScheme="blue"
           w="lg"
           size="sm"
           // width="auto"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
+          value={inputHeadline}
+          onChange={(e) => setInputHeadline(e.target.value)}
         />
         <Text fontSize="xs" as="i">
-          {`${inputMessage.length} / ${HEADLINE_LENGTH_LIMIT}`}
+          {`${inputHeadline.length} / ${HEADLINE_LENGTH_LIMIT}`}
         </Text>
         <IconButton
           aria-label="Submit"
@@ -64,8 +64,8 @@ function MessageInput({ emitNew, className }: MessageInputProps) {
   );
 }
 
-MessageInput.defaultProps = {
+HeadlineInput.defaultProps = {
   className: '',
 };
 
-export default MessageInput;
+export default HeadlineInput;

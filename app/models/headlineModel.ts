@@ -1,14 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
-export interface IMessage {
-  message: string;
+export interface IHeadline {
+  headline: string;
   createdAt: Date;
   updatedAt: Date;
   taps: number;
 }
 
-const messageSchema = new Schema<IMessage>({
-  message: {
+const headlineSchema = new Schema<IHeadline>({
+  headline: {
     type: String,
     trim: true,
     maxLength: 64,
@@ -21,4 +21,4 @@ const messageSchema = new Schema<IMessage>({
   },
 }, { timestamps: true });
 
-export default mongoose.model('Message', messageSchema);
+export default mongoose.model('Headline', headlineSchema);

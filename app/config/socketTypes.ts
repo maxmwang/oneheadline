@@ -1,10 +1,10 @@
-import { IMessage } from '../models/messageModel';
+import { IHeadline } from '../models/headlineModel';
 
 export interface ServerToClientEvents {
-  message: (message: IMessage | null) => void;
+  headline: (headline: IHeadline | null) => void;
 }
 
 export interface ClientToServerEvents {
-  new: (newMessage: string) => void;
+  new: (newHeadline: string) => void;
   stream: () => void;
 }

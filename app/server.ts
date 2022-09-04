@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 
 import connectDB from './config/db';
 import { ClientToServerEvents, ServerToClientEvents } from './config/socketTypes';
-import { getMessage, updateMessage } from './controllers/messageController';
+import { getHeadline, updateHeadline } from './controllers/headlineController';
 
 dotenv.config();
 
@@ -19,20 +19,20 @@ const server = http.createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
 
 io.on('connection', async (socket) => {
-  // fetch message from db
-  const initMessage = await getMessage();
+  // fetch headline from db
+  const initHeadline = await getHeadline();
 
-  socket.emit('message', initMessage);
+  socket.emit('headline', initHeadline);
 
-  socket.on('new', async (newMessage: string) => {
-    const updatedMessage = await updateMessage(newMessage);
-    io.sockets.emit('message', updatedMessage);
+  socket.on('new', async (newHeadline: string) => {
+    const updatedHeadline = await updateHeadline(newHeadline);
+    io.sockets.emit('headline', updatedHeadline);
   });
 
   // for debuging only; no use in production
   socket.on('stream', async () => {
-    const message = await getMessage();
-    socket.emit('message', message);
+    const headline = await getHeadline();
+    socket.emit('headline', headline);
   });
 });
 

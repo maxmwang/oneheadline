@@ -3,25 +3,25 @@ import {
   Box,
 } from '@chakra-ui/react';
 
-interface MessageDisplayProps {
-  message: string;
+interface HeadlineDisplayProps {
+  headline: string;
   className?: string;
 }
 
-function MessageDisplay({ message, className }: MessageDisplayProps) {
+function HeadlineDisplay({ headline, className }: HeadlineDisplayProps) {
   return (
     <Box
       borderWidth="1px"
       borderRadius="lg"
       className={className}
     >
-      {message}
+      {headline}
     </Box>
   );
 }
 
-MessageDisplay.defaultProps = {
+HeadlineDisplay.defaultProps = {
   className: '',
 };
 
-export default MessageDisplay;
+export default HeadlineDisplay;

@@ -2,41 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { Spacer, VStack } from '@chakra-ui/react';
 
-import IMessage from './api/message';
+import IHeadline from './api/headline';
 
-import MessageDisplay from './components/MessageDisplay';
-import MessageInput from './components/MessageInput';
+import HeadlineDisplay from './components/HeadlineDisplay';
+import HeadlineInput from './components/HeadlineInput';
 import MetadataDisplay from './components/MetadataDisplay';
 
 const socket = io();
 
 function App() {
   const [{
-    message, createdAt, updatedAt, taps,
-  }, setMessageData] = useState<IMessage>({
-    message: '',
+    headline, createdAt, updatedAt, taps,
+  }, setHeadlineData] = useState<IHeadline>({
+    headline: '',
     createdAt: '',
     updatedAt: '',
     taps: 0,
   });
 
   useEffect(() => {
-    socket.on('message', (data: IMessage) => {
-      setMessageData(data);
+    socket.on('headline', (data: IHeadline) => {
+      setHeadlineData(data);
     });
   }, []);
 
-  const emitNew = (inputMessage: string) => {
-    socket.emit('new', inputMessage);
+  const emitNew = (inputHeadline: string) => {
+    socket.emit('new', inputHeadline);
   };
 
   return (
     <section className="app">
       <VStack spacing={[4, 8]} alignContent="center">
-        <MessageDisplay message={message} className="display" />
+        <HeadlineDisplay headline={headline} className="display" />
         <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
         <Spacer />
-        <MessageInput emitNew={emitNew} className="input" />
+        <HeadlineInput emitNew={emitNew} className="input" />
       </VStack>
     </section>
   );
