@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
+import { Spacer, VStack } from '@chakra-ui/react';
 
 import IMessage from './api/message';
 
@@ -30,10 +31,13 @@ function App() {
   };
 
   return (
-    <section>
-      <MessageDisplay message={message} className="display" />
-      <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
-      <MessageInput emitNew={emitNew} className="input" />
+    <section className="app">
+      <VStack spacing={[4, 8]} alignContent="center">
+        <MessageDisplay message={message} className="display" />
+        <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
+        <Spacer />
+        <MessageInput emitNew={emitNew} className="input" />
+      </VStack>
     </section>
   );
 }

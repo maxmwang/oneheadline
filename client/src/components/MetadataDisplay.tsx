@@ -22,21 +22,21 @@ function MetadataDisplay({
 
   return (
     <section className={className}>
-      <HStack spacing="24px">
+      <HStack spacing="24px" w="lg" align="stretch">
         <div>
-          <Text as="sub">created:</Text>
+          <Text fontSize="xs" as="b">created:</Text>
           <Text>
             {`${createdDateObj.toLocaleString('en-US', DateTimeOptions)}`}
           </Text>
         </div>
         <div>
-          <Text as="sub">updated: </Text>
+          <Text fontSize="xs" as="b">updated: </Text>
           <Text>
             {`${updatedDateObj.toLocaleString('en-US', DateTimeOptions)}`}
           </Text>
         </div>
         <div>
-          <Text as="sub">taps: </Text>
+          <Text fontSize="xs" as="b">taps: </Text>
           <Text>
             {taps}
           </Text>

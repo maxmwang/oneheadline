@@ -94,8 +94,5 @@
   },
   "include": [
     "app/**/*"
-  ],
-  "exclude": [
-    "app/initiateMessage.ts"
   ]
 }
