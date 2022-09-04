@@ -3,7 +3,7 @@ import React from 'react';
 function TapsComponent({ taps }: { taps: number }) {
   return (
     <section>
-      <b>Taps: </b>
+      <b>taps: </b>
       {taps}
     </section>
   );
