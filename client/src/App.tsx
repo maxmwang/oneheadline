@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
-import { Button } from '@chakra-ui/react';
 
 import IMessage from './api/message';
 
@@ -29,18 +28,12 @@ function App() {
   const emitNew = (inputMessage: string) => {
     socket.emit('new', inputMessage);
   };
-  const emitStream = () => {
-    socket.emit('stream');
-  };
 
   return (
     <section>
       <MessageDisplay message={message} className="display" />
       <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
       <MessageInput emitNew={emitNew} className="input" />
-      <Button onClick={emitStream}>
-        Refresh
-      </Button>
     </section>
   );
 }

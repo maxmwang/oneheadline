@@ -29,6 +29,7 @@ io.on('connection', async (socket) => {
     io.sockets.emit('message', updatedMessage);
   });
 
+  // for debuging only; no use in production
   socket.on('stream', async () => {
     const message = await getMessage();
     socket.emit('message', message);
