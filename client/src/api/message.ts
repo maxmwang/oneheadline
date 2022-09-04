@@ -2,7 +2,7 @@ interface IMessage {
   message: string;
   createdAt: string;
   updatedAt: string;
-  changes: number;
+  taps: number;
 }
 
 export default IMessage;

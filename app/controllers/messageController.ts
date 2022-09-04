@@ -19,7 +19,7 @@ export async function updateMessage(newMessage: string): Promise<IMessage | null
     {},
     {
       message: newMessage,
-      $inc: { changes: 1 },
+      $inc: { taps: 1 },
     },
     { new: true },
   );

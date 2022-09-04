@@ -4,7 +4,7 @@ export interface IMessage {
   message: string;
   createdAt: Date;
   updatedAt: Date;
-  changes: number;
+  taps: number;
 }
 
 const messageSchema = new Schema<IMessage>({
@@ -14,7 +14,7 @@ const messageSchema = new Schema<IMessage>({
     limit: 256,
     required: true,
   },
-  changes: {
+  taps: {
     type: Number,
     default: 0,
     required: true,

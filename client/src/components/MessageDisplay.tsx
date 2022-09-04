@@ -7,17 +7,17 @@ import {
 } from '@chakra-ui/react';
 
 import DateComponent from './DateComponent';
-import ChangesComponent from './ChangesComponent';
+import TapsComponent from './TapsComponent';
 import IMessage from '../api/message';
 
 function MessageDisplay({ socket }: { socket: Socket }) {
   const [{
-    message, createdAt, updatedAt, changes,
+    message, createdAt, updatedAt, taps,
   }, setMessageData] = useState<IMessage>({
     message: '',
     createdAt: '',
     updatedAt: '',
-    changes: 0,
+    taps: 0,
   });
 
   useEffect(() => {
@@ -32,13 +32,13 @@ function MessageDisplay({ socket }: { socket: Socket }) {
         <Heading alignItems="center">
           {message}
         </Heading>
-
-        <Stack direction="row">
-          <DateComponent dateAsString={createdAt} dateType="createdAt" />
-          <DateComponent dateAsString={updatedAt} dateType="updatedAt" />
-          <ChangesComponent changes={changes} />
-        </Stack>
       </Box>
+
+      <Stack direction="row">
+        <DateComponent dateAsString={createdAt} dateType="createdAt" />
+        <DateComponent dateAsString={updatedAt} dateType="updatedAt" />
+        <TapsComponent taps={taps} />
+      </Stack>
     </section>
   );
 }
