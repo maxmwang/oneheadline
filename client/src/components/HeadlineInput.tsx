@@ -12,10 +12,9 @@ const HEADLINE_LENGTH_LIMIT = 64;
 
 interface HeadlineInputProps {
   emitNew: (inputHeadline: string) => void;
-  className?: string;
 }
 
-function HeadlineInput({ emitNew, className }: HeadlineInputProps) {
+function HeadlineInput({ emitNew }: HeadlineInputProps) {
   const [inputHeadline, setInputHeadline] = useState('');
 
   const toast = useToast();
@@ -37,7 +36,7 @@ function HeadlineInput({ emitNew, className }: HeadlineInputProps) {
   };
 
   return (
-    <section className={className}>
+    <section>
       <HStack>
         <Input
           placeholder="Share a headline."
@@ -63,9 +62,5 @@ function HeadlineInput({ emitNew, className }: HeadlineInputProps) {
     </section>
   );
 }
-
-HeadlineInput.defaultProps = {
-  className: '',
-};
 
 export default HeadlineInput;

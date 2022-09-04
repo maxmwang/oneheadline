@@ -11,17 +11,14 @@ type MetadataDisplayProps = {
   createdAt: string;
   updatedAt: string;
   taps: number;
-  className?: string;
 };
 
-function MetadataDisplay({
-  createdAt, updatedAt, taps, className,
-}: MetadataDisplayProps) {
+function MetadataDisplay({ createdAt, updatedAt, taps }: MetadataDisplayProps) {
   const createdDateObj = new Date(createdAt);
   const updatedDateObj = new Date(updatedAt);
 
   return (
-    <section className={className}>
+    <section>
       <HStack spacing="24px" w="lg" align="stretch">
         <div>
           <Text fontSize="xs" as="b">created:</Text>
@@ -45,9 +42,5 @@ function MetadataDisplay({
     </section>
   );
 }
-
-MetadataDisplay.defaultProps = {
-  className: '',
-};
 
 export default MetadataDisplay;

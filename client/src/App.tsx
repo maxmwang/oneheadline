@@ -33,10 +33,10 @@ function App() {
   return (
     <section className="app">
       <VStack spacing={[4, 8]} alignContent="center">
-        <HeadlineDisplay headline={headline} className="display" />
+        <HeadlineDisplay headline={headline} />
         <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
         <Spacer />
-        <HeadlineInput emitNew={emitNew} className="input" />
+        <HeadlineInput emitNew={emitNew} />
       </VStack>
     </section>
   );

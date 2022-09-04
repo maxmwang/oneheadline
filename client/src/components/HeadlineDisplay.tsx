@@ -5,23 +5,17 @@ import {
 
 interface HeadlineDisplayProps {
   headline: string;
-  className?: string;
 }
 
-function HeadlineDisplay({ headline, className }: HeadlineDisplayProps) {
+function HeadlineDisplay({ headline }: HeadlineDisplayProps) {
   return (
     <Box
       borderWidth="1px"
       borderRadius="lg"
-      className={className}
     >
       {headline}
     </Box>
   );
 }
-
-HeadlineDisplay.defaultProps = {
-  className: '',
-};
 
 export default HeadlineDisplay;
