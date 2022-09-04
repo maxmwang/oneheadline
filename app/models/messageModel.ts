@@ -11,7 +11,7 @@ const messageSchema = new Schema<IMessage>({
   message: {
     type: String,
     trim: true,
-    limit: 256,
+    maxLength: 64,
     required: true,
   },
   taps: {
