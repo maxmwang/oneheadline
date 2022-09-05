@@ -32,7 +32,7 @@ function App() {
 
   return (
     <section className="app">
-      <VStack spacing={[4, 8]} alignContent="center">
+      <VStack spacing={8}>
         <HeadlineDisplay headline={headline} />
         <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
         <Spacer />

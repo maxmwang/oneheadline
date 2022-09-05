@@ -18,28 +18,26 @@ function MetadataDisplay({ createdAt, updatedAt, taps }: MetadataDisplayProps) {
   const updatedDateObj = new Date(updatedAt);
 
   return (
-    <section>
-      <HStack className="metadata" spacing="24px">
-        <div>
-          <Text className="metadata-label">created:</Text>
-          <Text className="metadata-content">
-            {`${createdDateObj.toLocaleString('en-US', DateTimeOptions)}`}
-          </Text>
-        </div>
-        <div>
-          <Text className="metadata-label">updated: </Text>
-          <Text className="metadata-content">
-            {`${updatedDateObj.toLocaleString('en-US', DateTimeOptions)}`}
-          </Text>
-        </div>
-        <div>
-          <Text className="metadata-label">taps: </Text>
-          <Text className="metadata-content">
-            {taps}
-          </Text>
-        </div>
-      </HStack>
-    </section>
+    <HStack className="metadata" spacing="24px">
+      <div>
+        <Text className="metadata-label">created:</Text>
+        <Text className="metadata-content">
+          {`${createdDateObj.toLocaleString('en-US', DateTimeOptions)}`}
+        </Text>
+      </div>
+      <div>
+        <Text className="metadata-label">updated: </Text>
+        <Text className="metadata-content">
+          {`${updatedDateObj.toLocaleString('en-US', DateTimeOptions)}`}
+        </Text>
+      </div>
+      <div>
+        <Text className="metadata-label">taps: </Text>
+        <Text className="metadata-content">
+          {taps}
+        </Text>
+      </div>
+    </HStack>
   );
 }
 

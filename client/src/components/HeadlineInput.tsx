@@ -21,7 +21,8 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
 
   const inputTooLong = () => inputHeadline.length > HEADLINE_LENGTH_LIMIT;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (inputTooLong() && !toast.isActive('headline-length-limit')) {
       // input headline is too long
       toast({
@@ -47,7 +48,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
   };
 
   return (
-    <section>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <HStack>
         <Input
           className="input"
@@ -72,7 +73,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
           icon={<ArrowForwardIcon />}
         />
       </HStack>
-    </section>
+    </form>
   );
 }
 
