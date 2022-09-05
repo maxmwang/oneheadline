@@ -52,7 +52,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
     <form onSubmit={(e) => handleSubmit(e)}>
       <HStack className="input">
         <Input
-          placeholder="Tap in."
+          placeholder="Tap a headline."
           variant="flushed"
           colorScheme="blue"
           width="lg"
