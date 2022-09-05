@@ -12,16 +12,15 @@
   justify-content: center;
   font-size: 1.875rem;
   font-weight: bold;
-  height: 12rem;
+  height: calc(500px - 20vw);
   width: 65vw;
-  min-width: 400px;
   padding: 2.5rem;
   overflow-wrap: anywhere;
 }
 
 .input {
   width: 50vw;
-  min-width: 300px;
+  min-width: 250px;
   justify-content: center;
 }
 
