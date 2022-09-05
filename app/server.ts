@@ -1,3 +1,4 @@
+import * as path from 'path';
 import express from 'express';
 import 'express-async-errors';
 import http from 'http';
@@ -18,6 +19,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve('client/build')));
+}
+
 io.on('connection', async (socket) => {
   // fetch headline from db
   const initHeadline = await getHeadline();
@@ -34,6 +39,10 @@ io.on('connection', async (socket) => {
     const headline = await getHeadline();
     socket.emit('headline', headline);
   });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('client/build/index.html'));
 });
 
 server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
