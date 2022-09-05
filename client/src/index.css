@@ -13,12 +13,20 @@
   font-size: 1.875rem;
   font-weight: bold;
   height: 12rem;
-  width: 48rem;
+  width: 65vw;
+  min-width: 400px;
   padding: 2.5rem;
   overflow-wrap: anywhere;
 }
 
+.input {
+  width: 50vw;
+  min-width: 300px;
+  justify-content: center;
+}
+
 .input-length-indicator {
+  white-space: nowrap;
   font-size: 0.875rem;
   font-style: italic;
 }

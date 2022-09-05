@@ -49,9 +49,8 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <HStack>
+      <HStack className="input">
         <Input
-          className="input"
           placeholder="Share a headline."
           variant="flushed"
           colorScheme="blue"
