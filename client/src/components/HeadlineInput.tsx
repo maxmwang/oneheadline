@@ -23,6 +23,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (inputTooLong() && !toast.isActive('headline-length-limit')) {
       // input headline is too long
       toast({
@@ -31,7 +32,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
         status: 'error',
         duration: 3000,
       });
-    } else if (inputHeadline) {
+    } else if (inputHeadline.trim()) {
       // input headline is valid
       emitNew(inputHeadline);
       setInputHeadline('');
@@ -51,7 +52,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
     <form onSubmit={(e) => handleSubmit(e)}>
       <HStack className="input">
         <Input
-          placeholder="Share a headline."
+          placeholder="Tap in."
           variant="flushed"
           colorScheme="blue"
           width="lg"
