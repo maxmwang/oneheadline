@@ -17,3 +17,29 @@
   padding: 2.5rem;
   overflow-wrap: anywhere;
 }
+
+.input {}
+
+.input-length-indicator {
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.input-length-indicator.error {
+  color: red;
+}
+
+.metadata {
+  justify-content: center;
+}
+
+.metadata-label {
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: darkgrey;
+}
+
+.metadata-content {
+  font-size: 0.75rem;
+  color: grey;
+}

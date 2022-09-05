@@ -12,6 +12,7 @@ function HeadlineDisplay({ headline }: HeadlineDisplayProps) {
     <Box
       borderWidth="1px"
       borderRadius="lg"
+      className="display"
     >
       {headline}
     </Box>
