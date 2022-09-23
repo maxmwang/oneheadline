@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { Spacer, VStack } from '@chakra-ui/react';
 
-import IHeadline from './api/headline';
+import { useAppDispatch } from './app/hooks';
+import { socketConnect } from './constants/actionCreators';
 
 import HeadlineDisplay from './components/HeadlineDisplay';
 import HeadlineInput from './components/HeadlineInput';
@@ -11,24 +12,10 @@ import MetadataDisplay from './components/MetadataDisplay';
 const socket = io();
 
 function App() {
-  const [{
-    headline, createdAt, updatedAt, taps,
-  }, setHeadlineData] = useState<IHeadline>({
-    headline: '',
-    createdAt: '',
-    updatedAt: '',
-    taps: 0,
-  });
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    socket.on('headline', (data: IHeadline) => {
-      setHeadlineData(data);
-    });
+    dispatch(socketConnect());
   }, []);
-
-  const emitNew = (inputHeadline: string) => {
-    socket.emit('new', inputHeadline);
-  };
 
   return (
     <section className="app">
