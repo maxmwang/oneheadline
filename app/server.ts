@@ -7,7 +7,8 @@ import * as dotenv from 'dotenv';
 
 import connectDB from './config/db';
 import { ClientToServerEvents, ServerToClientEvents } from './config/socketTypes';
-import { getHeadline, updateHeadline } from './controllers/headlineController';
+import channelController from './controllers/channelController';
+import { getChannel } from './handlers/channelHandlers';
 
 dotenv.config();
 
@@ -25,20 +26,11 @@ if (process.env.NODE_ENV === 'production') {
 
 io.on('connection', async (socket) => {
   // fetch headline from db
-  const initHeadline = await getHeadline();
+  const initChannel = await getChannel('/');
 
-  socket.emit('headline', initHeadline);
+  socket.emit('channel', initChannel);
 
-  socket.on('new', async (newHeadline: string) => {
-    const updatedHeadline = await updateHeadline(newHeadline);
-    io.sockets.emit('headline', updatedHeadline);
-  });
-
-  // for debuging only; no use in production
-  socket.on('stream', async () => {
-    const headline = await getHeadline();
-    socket.emit('headline', headline);
-  });
+  channelController(io, socket);
 });
 
 app.get('*', (req, res) => {

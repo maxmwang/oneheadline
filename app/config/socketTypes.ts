@@ -1,10 +1,16 @@
-import { IHeadline } from '../models/headlineModel';
+import { IChannel } from '../models/channelModel';
+
+export interface Error {
+  type: string;
+  message: string;
+}
 
 export interface ServerToClientEvents {
-  headline: (headline: IHeadline | null) => void;
+  channel: (channel: IChannel) => void;
 }
 
 export interface ClientToServerEvents {
-  new: (newHeadline: string) => void;
+  'headline/update': (newHeadline: string) => void;
+  'channel/get': (channelCode: string) => void;
   stream: () => void;
 }
