@@ -22,6 +22,7 @@ const websocketMiddleware: Middleware<{}, RootState> = (store) => (next) => (act
       });
       break;
     }
+    // socket emits live in middleware
     case HEADLINE_UPDATE: {
       if (socket) {
         socket.emit('new', action.payload);
