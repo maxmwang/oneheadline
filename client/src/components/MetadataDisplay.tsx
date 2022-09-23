@@ -1,19 +1,18 @@
 import React from 'react';
 
 import { Text, HStack } from '@chakra-ui/react';
+import { useAppSelector } from '../app/hooks';
 
 const DateTimeOptions: Intl.DateTimeFormatOptions = {
   dateStyle: 'medium',
   timeStyle: 'short',
 };
 
-type MetadataDisplayProps = {
-  createdAt: string;
-  updatedAt: string;
-  taps: number;
-};
+function MetadataDisplay() {
+  const createdAt = useAppSelector((state) => state.headline.createdAt);
+  const updatedAt = useAppSelector((state) => state.headline.updatedAt);
+  const taps = useAppSelector((state) => state.headline.taps);
 
-function MetadataDisplay({ createdAt, updatedAt, taps }: MetadataDisplayProps) {
   const createdDateObj = new Date(createdAt);
   const updatedDateObj = new Date(updatedAt);
 

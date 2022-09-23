@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { io } from 'socket.io-client';
 import { Spacer, VStack } from '@chakra-ui/react';
 
 import { useAppDispatch } from './app/hooks';
@@ -12,16 +11,17 @@ import MetadataDisplay from './components/MetadataDisplay';
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
+    console.log('connect to socket');
     dispatch(socketConnect());
   }, []);
 
   return (
     <section className="app">
       <VStack spacing={8}>
-        <HeadlineDisplay headline={headline} />
-        <MetadataDisplay createdAt={createdAt} updatedAt={updatedAt} taps={taps} />
+        <HeadlineDisplay />
+        <MetadataDisplay />
         <Spacer />
-        <HeadlineInput emitNew={emitNew} />
+        <HeadlineInput />
       </VStack>
     </section>
   );

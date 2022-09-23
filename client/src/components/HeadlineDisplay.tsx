@@ -3,11 +3,11 @@ import {
   Box,
 } from '@chakra-ui/react';
 
-interface HeadlineDisplayProps {
-  headline: string;
-}
+import { useAppSelector } from '../app/hooks';
 
-function HeadlineDisplay({ headline }: HeadlineDisplayProps) {
+function HeadlineDisplay() {
+  const headline = useAppSelector((state) => state.headline.headline);
+
   return (
     <Box
       borderWidth="1px"
