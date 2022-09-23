@@ -8,13 +8,14 @@ import {
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
+import { useAppDispatch } from '../app/hooks';
+import { headlineUpdate } from '../constants/actionCreators';
+
 const HEADLINE_LENGTH_LIMIT = 64;
 
-interface HeadlineInputProps {
-  emitNew: (inputHeadline: string) => void;
-}
+function HeadlineInput() {
+  const dispatch = useAppDispatch();
 
-function HeadlineInput({ emitNew }: HeadlineInputProps) {
   const [inputHeadline, setInputHeadline] = useState('');
 
   const toast = useToast();
@@ -34,7 +35,7 @@ function HeadlineInput({ emitNew }: HeadlineInputProps) {
       });
     } else if (inputHeadline.trim()) {
       // input headline is valid
-      emitNew(inputHeadline);
+      dispatch(headlineUpdate(inputHeadline));
       setInputHeadline('');
       toast.closeAll();
     } else if (!toast.isActive('headline-doens\'t-exist')) {
