@@ -10,9 +10,9 @@ let socket: Socket | null = null;
 const websocketMiddleware: Middleware<{}, RootState> = (store) => (next) => (action) => {
   switch (action.type) {
     case SOCKET_CONNECT: {
-      // if (socket) {
-      //   socket.disconnect();
-      // }
+      if (socket) {
+        socket.disconnect();
+      }
       // socket will live in middleware
       socket = io();
 
