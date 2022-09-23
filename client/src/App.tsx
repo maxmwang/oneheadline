@@ -9,8 +9,6 @@ import HeadlineDisplay from './components/HeadlineDisplay';
 import HeadlineInput from './components/HeadlineInput';
 import MetadataDisplay from './components/MetadataDisplay';
 
-const socket = io();
-
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
