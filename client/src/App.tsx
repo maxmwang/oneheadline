@@ -11,7 +11,6 @@ import MetadataDisplay from './components/MetadataDisplay';
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    console.log('connect to socket');
     dispatch(socketConnect());
   }, []);
 

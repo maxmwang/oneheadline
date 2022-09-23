@@ -18,7 +18,6 @@ const websocketMiddleware: Middleware<{}, RootState> = (store) => (next) => (act
 
       // socket listeners lives in middleware
       socket.on('headline', (headline) => {
-        console.log(headline);
         store.dispatch(headlineSet(headline));
       });
       break;
