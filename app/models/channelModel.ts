@@ -21,7 +21,6 @@ const channelSchema = new Schema<IChannel>({
     type: String,
     default: '',
     trim: true,
-    maxLength: 32,
   },
   headline: {
     type: String,
