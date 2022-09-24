@@ -6,7 +6,7 @@ import {
 import { useAppSelector } from '../app/hooks';
 
 function HeadlineDisplay() {
-  const headline = useAppSelector((state) => state.headline.headline);
+  const headline = useAppSelector((state) => state.channel.headline);
 
   return (
     <Box

@@ -1,13 +1,13 @@
 import { Middleware } from 'redux';
 import { io, Socket } from 'socket.io-client';
 
-import { RootState } from '../store';
-import { SOCKET_CONNECT, HEADLINE_UPDATE } from '../../constants/actionNames';
-import { headlineSet } from '../../constants/actionCreators';
+import { RootState as R } from '../store';
+import { SOCKET_CONNECT, CHANNEL_UPDATE } from '../../constants/actionNames';
+import { channelSet } from '../../constants/actionCreators';
 
 let socket: Socket | null = null;
 
-const websocketMiddleware: Middleware<{}, RootState> = (store) => (next) => (action) => {
+const websocketMiddleware: Middleware<{}, R> = ({ dispatch, getState }) => (next) => (action) => {
   switch (action.type) {
     case SOCKET_CONNECT: {
       if (socket) {
@@ -17,15 +17,19 @@ const websocketMiddleware: Middleware<{}, RootState> = (store) => (next) => (act
       socket = io();
 
       // socket listeners lives in middleware
-      socket.on('headline', (headline) => {
-        store.dispatch(headlineSet(headline));
+      socket.on('channel', (channel) => {
+        dispatch(channelSet(channel));
       });
+
+      // get initial channel
+      socket.emit('channel/get', getState().channel.code, getState().channel.password);
+
       break;
     }
     // socket emits live in middleware
-    case HEADLINE_UPDATE: {
+    case CHANNEL_UPDATE: {
       if (socket) {
-        socket.emit('new', action.payload);
+        socket.emit('channel/update', getState().channel.code, action.payload);
       }
       break;
     }

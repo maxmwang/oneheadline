@@ -2,7 +2,7 @@
 export const SOCKET_CONNECT = 'socket/connect';
 
 // updates headline value in server
-export const HEADLINE_UPDATE = 'headline/update';
+export const CHANNEL_UPDATE = 'channel/update';
 
 // sets headline value in store
-export const HEADLINE_SET = 'headline/set';
+export const CHANNEL_SET = 'channel/set';

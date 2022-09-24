@@ -9,9 +9,10 @@ const DateTimeOptions: Intl.DateTimeFormatOptions = {
 };
 
 function MetadataDisplay() {
-  const createdAt = useAppSelector((state) => state.headline.createdAt);
-  const updatedAt = useAppSelector((state) => state.headline.updatedAt);
-  const taps = useAppSelector((state) => state.headline.taps);
+  const code = useAppSelector((state) => state.channel.code);
+  const createdAt = useAppSelector((state) => state.channel.createdAt);
+  const updatedAt = useAppSelector((state) => state.channel.updatedAt);
+  const taps = useAppSelector((state) => state.channel.taps);
 
   const createdDateObj = new Date(createdAt);
   const updatedDateObj = new Date(updatedAt);
@@ -19,7 +20,13 @@ function MetadataDisplay() {
   return (
     <HStack className="metadata" spacing="24px">
       <div>
-        <Text className="metadata-label">created:</Text>
+        <Text className="metadata-label">code: </Text>
+        <Text className="metadata-content">
+          {code}
+        </Text>
+      </div>
+      <div>
+        <Text className="metadata-label">created: </Text>
         <Text className="metadata-content">
           {`${createdDateObj.toLocaleString('en-US', DateTimeOptions)}`}
         </Text>

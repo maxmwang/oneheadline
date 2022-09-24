@@ -1,24 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import IHeadline from '../api/headline';
+import IChannel from '../api/channel';
 
-const initialState: IHeadline = {
+const initialState: IChannel = {
+  code: '/',
+  password: '',
   headline: '',
   createdAt: '',
   updatedAt: '',
   taps: 0,
 };
 
-export const headlineSlice = createSlice({
-  name: 'headline',
+export const channelSlice = createSlice({
+  name: 'channel',
   initialState,
   reducers: {
-    set: (state, action: PayloadAction<IHeadline>) => action.payload,
-    // setHeadline will ONLY be called through socketMiddleware
+    set: (state, action: PayloadAction<IChannel>) => action.payload,
+    // set will ONLY be called through socketMiddleware
     // client imput will only change server value,
     // which in turn will send a new socket to update the store
   },
 });
 
-export default headlineSlice.reducer;
+export default channelSlice.reducer;
