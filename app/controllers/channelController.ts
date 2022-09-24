@@ -45,7 +45,7 @@ export default function channelController(io: Server<C, S>, socket: Socket) {
     io.to(channel.code).emit('channel', channel);
   }
 
-  socket.emit('channel', getChannel);
+  socket.on('channel/get', getChannel);
 
-  socket.on('headline/update', updateChannel);
+  socket.on('channel/update', updateChannel);
 }
