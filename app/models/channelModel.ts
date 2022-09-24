@@ -1,7 +1,8 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IChannel extends Document {
-  code: string
+  code: string;
+  password: string;
   headline: string;
   createdAt: Date;
   updatedAt: Date;
@@ -15,6 +16,12 @@ const channelSchema = new Schema<IChannel>({
     maxLength: 16,
     required: true,
     unique: true,
+  },
+  password: {
+    type: String,
+    default: '',
+    trim: true,
+    maxLength: 32,
   },
   headline: {
     type: String,

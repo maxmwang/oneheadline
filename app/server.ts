@@ -8,7 +8,6 @@ import * as dotenv from 'dotenv';
 import connectDB from './config/db';
 import { ClientToServerEvents, ServerToClientEvents } from './config/socketTypes';
 import channelController from './controllers/channelController';
-import { getChannel } from './handlers/channelHandlers';
 
 dotenv.config();
 
@@ -25,11 +24,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 io.on('connection', async (socket) => {
-  // fetch headline from db
-  const initChannel = await getChannel('/');
-
-  socket.emit('channel', initChannel);
-
   channelController(io, socket);
 });
 
