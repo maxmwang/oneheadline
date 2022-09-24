@@ -11,6 +11,6 @@ export interface ServerToClientEvents {
 }
 
 export interface ClientToServerEvents {
-  'channel/get': (channelCode: string, password: string) => void;
+  'channel/get': (channelCode: string, password?: string) => void;
   'channel/update': (channelCode: string, newHeadline: string) => void;
 }

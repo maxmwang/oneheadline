@@ -10,8 +10,9 @@ export default function channelController(io: Server<C, S>, socket: Socket) {
       socket.emit('channel', Channel.create({
         code: channelCode,
         password: channelPassword,
-        headline: `Welcome to channel :${channelCode}!`,
+        headline: `Welcome to :${channelCode}!`,
       }));
+      socket.join(channelCode);
       return;
     }
 
@@ -23,6 +24,7 @@ export default function channelController(io: Server<C, S>, socket: Socket) {
     }
 
     socket.emit('channel', channel);
+    socket.join(channelCode);
   }
 
   async function updateChannel(channelCode: string, newHeadline: string) {

@@ -6,7 +6,7 @@ import { Server } from 'socket.io';
 import * as dotenv from 'dotenv';
 
 import connectDB from './config/db';
-import { ClientToServerEvents, ServerToClientEvents } from './config/socketTypes';
+import { ClientToServerEvents as C, ServerToClientEvents as S } from './config/socketTypes';
 import channelController from './controllers/channelController';
 
 dotenv.config();
@@ -17,7 +17,7 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
+const io = new Server<C, S>(server);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve('client/build')));
