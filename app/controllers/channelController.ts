@@ -4,7 +4,10 @@ import { ClientToServerEvents as C, ServerToClientEvents as S } from '../config/
 import Channel from '../models/channelModel';
 
 export default function channelController(io: Server<C, S>, socket: Socket) {
-  async function getChannel(channelCode: string, channelPassword: string = '') {
+  async function getChannel(channelCode: string = '/', channelPassword: string = '') {
+    channelCode = channelCode.trim() || '/';
+    channelPassword = channelPassword.trim();
+
     const channel = await Channel.findOne({ code: channelCode });
     if (!channel) {
       socket.emit('channel', Channel.create({
@@ -21,13 +24,17 @@ export default function channelController(io: Server<C, S>, socket: Socket) {
         type: 'password',
         message: 'Incorrect password',
       });
+      return;
     }
 
     socket.emit('channel', channel);
     socket.join(channelCode);
   }
 
-  async function updateChannel(channelCode: string, newHeadline: string) {
+  async function updateChannel(channelCode: string = '/', newHeadline: string = '') {
+    channelCode = channelCode.trim() || '/';
+    newHeadline = newHeadline.trim();
+
     const channel = await Channel.findOneAndUpdate(
       { code: channelCode },
       {
