@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Spacer, VStack } from '@chakra-ui/react';
 
-import { useAppDispatch } from './app/hooks';
-import { socketConnect } from './constants/actionCreators';
+import { useAppDispatch } from '../app/hooks';
+import { socketConnect } from '../constants/actionCreators';
 
-import HeadlineDisplay from './components/HeadlineDisplay';
-import HeadlineInput from './components/HeadlineInput';
-import MetadataDisplay from './components/MetadataDisplay';
+import HeadlineDisplay from '../components/HeadlineDisplay';
+import HeadlineInput from '../components/HeadlineInput';
+import MetadataDisplay from '../components/MetadataDisplay';
 
 function App() {
   const dispatch = useAppDispatch();
