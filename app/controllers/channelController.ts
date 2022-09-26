@@ -10,11 +10,13 @@ export default function channelController(io: Server<C, S>, socket: Socket) {
 
     const channel = await Channel.findOne({ code: channelCode });
     if (!channel) {
-      socket.emit('channel', Channel.create({
+      const newChannel = await Channel.create({
         code: channelCode,
         password: channelPassword,
         headline: `Welcome to :${channelCode}!`,
-      }));
+      });
+
+      socket.emit('channel', newChannel);
       socket.join(channelCode);
       return;
     }
