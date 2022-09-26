@@ -2,9 +2,11 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import websocketMiddleware from './middleware/websocket';
 import channelReducer from '../features/channelSlice';
+import errorReducer from '../features/errorSlice';
 
 const rootReducer = combineReducers({
   channel: channelReducer,
+  error: errorReducer,
 });
 
 export const store = configureStore({
