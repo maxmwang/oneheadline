@@ -48,3 +48,11 @@
   font-size: 0.75rem;
   color: grey;
 }
+
+.footer {
+  position: absolute;
+  bottom: 3vh;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
