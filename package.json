@@ -1,11 +1,12 @@
 {
   "name": "tapin",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node build/server.js",
-    "dev": "nodemon -e ts --ignore client --exec \"npm run start\"",
+    "dev-start": "tsc && nodemon build/server.js",
+    "dev": "nodemon -e ts --ignore client --exec \"npm run dev-start\"",
     "heroku-postbuild": "tsc && cd client && npm install --omit=dev && npm run build"
   },
   "author": "",
