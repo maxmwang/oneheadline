@@ -56,3 +56,7 @@
   justify-content: center;
   width: 100%;
 }
+
+.center {
+  text-align: center;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  Code,
+  Text,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -19,7 +21,20 @@ function HowItWorks({ isOpen, onClose }: HowItWorksComponentProps) {
       <ModalContent>
         <ModalHeader>How tap:in Works</ModalHeader>
         <ModalCloseButton />
-        <ModalBody />
+        <ModalBody className="modal-body" padding="0px 24px 24px 24px">
+          <Text>
+            {`tap:in is a multi-channel headline carrier, supporting both public
+            and private channels. Public channels are open to all users, while
+            private channels require a password to join.`}
+          </Text>
+          <br />
+          <Text>
+            {'The format of joining a channel should be in the form of: '}
+          </Text>
+          <div className="center">
+            <Code>:code:password</Code>
+          </div>
+        </ModalBody>
       </ModalContent>
     </Modal>
   );
