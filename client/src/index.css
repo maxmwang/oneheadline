@@ -60,3 +60,13 @@
 .center {
   text-align: center;
 }
+
+.how-it-works {
+  width: 45vw;
+  background-color: rgba(152, 251, 152, 0.7);
+  border-color: rgba(128, 128, 128, 0.25);
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 30px;
+  text-align: left;
+}
