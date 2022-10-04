@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Spacer,
   VStack,
@@ -13,17 +13,11 @@ import HeadlineDisplay from '../components/HeadlineDisplay';
 import HeadlineInput from '../components/HeadlineInput';
 import MetadataDisplay from '../components/MetadataDisplay';
 import HowItWorks from '../components/HowItWorks';
-import WhatsNew from '../components/WhatsNew';
 
 function App() {
-  const [showWhatsNew, setShowWhatsNew] = useState(true);
   const dispatch = useAppDispatch();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const closeWhatsNew = () => {
-    setShowWhatsNew(false);
-  };
 
   useEffect(() => {
     dispatch(socketConnect());
@@ -33,9 +27,6 @@ function App() {
     <section>
       <section className="app">
         <VStack spacing={8}>
-          {showWhatsNew && (
-            <WhatsNew onClick={closeWhatsNew} />
-          )}
           <HeadlineDisplay />
           <MetadataDisplay />
           <Spacer />
