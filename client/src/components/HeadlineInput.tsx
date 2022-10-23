@@ -29,7 +29,7 @@ function HeadlineInput() {
 
   const getInputType = () => (rawInput.startsWith(':') ? 'Code' : 'Headline');
   const getInputLength = () => (getInputType() === 'Headline' ? headline.length : code.length);
-  const inputTooLong = () => getInputLength() >= INPUT_LIMITS[getInputType()];
+  const inputTooLong = () => getInputLength() > INPUT_LIMITS[getInputType()];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
