@@ -29,7 +29,7 @@ function HowItWorks({ isOpen, onClose }: HowItWorksComponentProps) {
           </Text>
           <br />
           <Text>
-            {'The format of joining a channel should be in the form of: '}
+            {'The format of creating/joining a channel should be in the form of: '}
           </Text>
           <div className="center">
             <Code>:code:password</Code>
